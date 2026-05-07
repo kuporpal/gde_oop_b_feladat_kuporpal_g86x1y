@@ -2,3 +2,4 @@
 *.log
 desktop.ini
 Thumbs.db
+**pycache**
