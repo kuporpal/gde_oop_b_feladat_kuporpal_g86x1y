@@ -1,4 +1,5 @@
 from utils.logger import ProjektLogger
+from utils.localize import Localize
 import tkinter as tk
 from tkinter import messagebox
 
@@ -6,24 +7,26 @@ logger = ProjektLogger()
 logger.infoprint("----------------------------")
 logger.infoprint("START")
 
+language = 'hu'
+
 def nevjegy():
-    messagebox.showinfo("Névjegy", "Objektum Orientált Programozás 'B' Beadandó Feladat\nRepülőjegy Foglalási Rendszer\nA programot készítette: Kupor Pál\nNeptun kód: G86X1Y")
+    messagebox.showinfo(Localize.get_text('menu_about',language), Localize.get_text('aboutmessage',language))
 
 root = tk.Tk()
-root.title("Repülőjegy Foglalási Rendszer")
+root.title(Localize.get_text('windowtitle',language))
 root.resizable(True, True)
 root.minsize(800, 600)
 root.state('zoomed')
 
 menu_bar = tk.Menu(root)
 file_menu = tk.Menu(menu_bar, tearoff=0)
-file_menu.add_command(label="Kilépés", command=root.quit)
+file_menu.add_command(label=Localize.get_text('menu_exit',language), command=root.quit)
 
-menu_bar.add_cascade(label="Fájl", menu=file_menu)
+menu_bar.add_cascade(label=Localize.get_text('menu_file',language), menu=file_menu)
 
 help_menu = tk.Menu(menu_bar, tearoff=0)
-help_menu.add_command(label="Névjegy", command=nevjegy)
-menu_bar.add_cascade(label="Súgó", menu=help_menu)
+help_menu.add_command(label=Localize.get_text('menu_about',language), command=nevjegy)
+menu_bar.add_cascade(label=Localize.get_text('menu_help',language), menu=help_menu)
 
 label = tk.Label(root, text="Szia! Ez egy Python GUI.")
 label.pack(pady=20)
